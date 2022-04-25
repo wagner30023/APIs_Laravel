@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+ use App\Http\Resources\ProductResource;
+ use App\Http\Resources\ProductCollection;
 
 class ProductsController extends Controller
 {
@@ -21,13 +23,15 @@ class ProductsController extends Controller
     public function index()
     {
         $products = $this->product->paginate(1);
-        return response()->json($products);
+       // return response()->json($products);
+       return new ProductCollection($products);
     }
 
     public function show($id)
     {
         $product = $this->product->find($id);
-        return response()->json($product);
+        // return response()->json($product);
+        return new ProductResource($product);
     }
 
 
@@ -52,7 +56,7 @@ class ProductsController extends Controller
     {
         $product = $this->product->find($id);
         $product->delete();
-
+        // return new ProductResource($product);
         return response()->json(['data' => ['msg' => 'Produto removido com sucesso']]);
     }
 }
