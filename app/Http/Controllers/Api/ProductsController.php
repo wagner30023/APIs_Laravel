@@ -20,7 +20,7 @@ class ProductsController extends Controller
 
     public function index()
     {
-        $products = $this->product->all();
+        $products = $this->product->paginate(1);
         return response()->json($products);
     }
 
@@ -52,7 +52,7 @@ class ProductsController extends Controller
     {
         $product = $this->product->find($id);
         $product->delete();
-        
+
         return response()->json(['data' => ['msg' => 'Produto removido com sucesso']]);
     }
 }
