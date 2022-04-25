@@ -33,3 +33,7 @@ Route::get('/products', function(){
 
 
 Route::get('/products',[ProductsController::class,'index']);
+Route::get('/products/{id}',[ProductsController::class,'show']);
+Route::post('/products',[ProductsController::class,'save']);
+Route::put('/products',[ProductsController::class,'update']);
+Route::delete('/products/{id}',[ProductsController::class,'delete']);
